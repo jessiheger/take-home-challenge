@@ -1,9 +1,13 @@
 import React from 'react';
-import { SampleComponent } from '../components';
+import { BillingForm, ContactForm, Quantity } from '../components';
 
 function App() {
   return (
-    <SampleComponent />
+    <div>
+      <ContactForm />
+      <BillingForm />
+      <Quantity />
+    </div>
   );
 }
 
