@@ -1,9 +1,12 @@
 import React from 'react';
-import { SampleComponent } from '../components';
+import { Form, SampleComponent } from '../components';
 
 function App() {
   return (
+    <div>
     <SampleComponent />
+    <Form />
+    </div>
   );
 }
 
