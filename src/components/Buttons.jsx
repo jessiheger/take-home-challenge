@@ -29,7 +29,6 @@ export const PreviousButton = props => {
   if (currentStep !== 'QUANTITY') {
     return (
       <button 
-        className="btn btn-secondary" 
         type="button" onClick={() => setPreviousStep(previousStep)}>
       Previous
       </button>
@@ -39,17 +38,18 @@ export const PreviousButton = props => {
 }
 
 export const NextButton = props => {
-    const { currentStep, setNextStep } = props;
+    const { currentStep, setNextStep, submitNewOrder } = props;
     const nextStep = setNext(currentStep);
 
     if (currentStep !== 'BILLING') {
       return (
         <button 
-          className="btn btn-primary float-right" 
           type="button" onClick={() => setNextStep(nextStep)}>
         Next
         </button>        
       )
     }
-    return null;
+    return (
+        <button onClick= {() => submitNewOrder}>Submit Order</button>
+    );
 }

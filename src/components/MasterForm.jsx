@@ -42,7 +42,7 @@ export const MasterForm = () => {
         <Billing handleChange={handleChange} currentStep={currentStep} register={register}/>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
             <PreviousButton currentStep={currentStep} setPreviousStep={setPreviousStep} />
-            <NextButton currentStep={currentStep} setNextStep={setNextStep} />
+            <NextButton currentStep={currentStep} setNextStep={setNextStep} submitNewOrder={handleSubmit}/>
         </div>
       </form>
     );
