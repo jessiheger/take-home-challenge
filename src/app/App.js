@@ -1,10 +1,12 @@
 import React from 'react';
-import { ContactForm } from '../components';
+import { BillingForm, ContactForm, Quantity } from '../components';
 
 function App() {
   return (
     <div>
-    <ContactForm />
+      <ContactForm />
+      <BillingForm />
+      <Quantity />
     </div>
   );
 }

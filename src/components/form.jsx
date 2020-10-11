@@ -45,7 +45,18 @@ export const ContactForm = () => {
           ></CustomInput>
         )
       })}
-      {BillingFields.map(field => {
+      <button type="submit">Next</button>
+    </form>
+  );
+};
+
+export const BillingForm = () => {
+  const { handleSubmit, register, errors } = useForm();
+  const onSubmit = values => console.log(values);
+
+  return (
+  <form onSubmit={handleSubmit(onSubmit)} style={{display: 'flex', flexDirection: 'column', width: '40%'}}>
+    {BillingFields.map(field => {
         return (
           <CustomInput
             label={field.label}
@@ -58,6 +69,5 @@ export const ContactForm = () => {
         )
       })}
       <button type="submit">Next</button>
-    </form>
-  );
-};
+  </form>
+  )}
