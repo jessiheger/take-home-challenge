@@ -1,11 +1,10 @@
 import React from 'react';
-import { Form, SampleComponent } from '../components';
+import { ContactForm } from '../components';
 
 function App() {
   return (
     <div>
-    <SampleComponent />
-    <Form />
+    <ContactForm />
     </div>
   );
 }

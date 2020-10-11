@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {FormFields} from './formFields';
+import { BillingFields, ContactFields } from './formFields';
 
 const CustomInput = (props) => {
   const { register, errors } = useForm();
@@ -27,13 +27,13 @@ const CustomInput = (props) => {
   )
 }
 
-export const Form = () => {
+export const ContactForm = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => console.log(values);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{display: 'flex', flexDirection: 'column', width: '40%'}}>
-      {FormFields.map(field => {
+      {ContactFields.map(field => {
         return (
           <CustomInput
             label={field.label}
@@ -45,7 +45,19 @@ export const Form = () => {
           ></CustomInput>
         )
       })}
-      <button type="submit">Submit</button>
+      {BillingFields.map(field => {
+        return (
+          <CustomInput
+            label={field.label}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            value={field.value}
+            message={field.message}
+          ></CustomInput>
+        )
+      })}
+      <button type="submit">Next</button>
     </form>
   );
 };
