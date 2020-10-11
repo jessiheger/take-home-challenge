@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 export const Quantity = () => {
-    const [quantity, setQuantity ] = useState(0);
-    const [price, setPrice ] = useState(0);
+    const [quantity, setQuantity ] = useState(1);
+    const [price, setPrice ] = useState(49.99);
 
     useEffect(() => {
-            setPrice(100 * quantity);
+            setPrice(49.99 * quantity);
     }, [quantity]);
 
 
@@ -22,7 +22,7 @@ export const Quantity = () => {
                 <option value={3}>3</option>
             </select>
 
-            <h4>Price: {price || 0} </h4>
+            <h4>Price: ${price} </h4>
         </div>
     )
 }
