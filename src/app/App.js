@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { BillingForm, ContactForm, Quantity } from '../components';
+import { MasterForm } from 'components/MasterForm';
 
 function App() {
 
+  // TO DO: REMOVE OR MOVE
   const onReset = () => {
     axios({
       method: 'put',
@@ -16,9 +17,8 @@ function App() {
 
   return (
     <div>
-      <ContactForm />
-      {/* <BillingForm /> */}
-      <Quantity />
+      <MasterForm />
+      {/* TO DO: REMOVE OR MOVE */}
       <button onClick={onReset}>RESET USERS</button>
     </div>
   );
