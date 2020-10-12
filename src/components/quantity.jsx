@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 export const Quantity = props => {
     const { currentStep, addToOrder } = props;
@@ -31,3 +32,8 @@ export const Quantity = props => {
         : <div></div>
     )
 }
+
+Quantity.propTypes = {
+    addToOrder: PropTypes.func,
+    currentStep: PropTypes.string,
+};
