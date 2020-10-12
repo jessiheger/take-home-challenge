@@ -9,7 +9,11 @@ const router = express.Router()
 
 router.get('/all', usersRoutes.getUsers)
 
+router.get('/:id', usersRoutes.getByUserId)
+
 router.post('/create', usersRoutes.createUser)
+
+router.patch('/api/magic', usersRoutes.updateFulfilled)
 
 router.put('/delete', usersRoutes.deleteUser)
 

@@ -17,6 +17,20 @@ exports.getUsers = async (req, res) => {
     })
 }
 
+
+// Retrieve single user
+exports.getByUserId = async (req, res) => {
+  let id = req.params.id;
+  knex('users')
+    .where('id', id)
+    .then(userData => {
+      res.json(userData)
+    })
+    .catch(err => {
+      res.json({ message: `There was an error retrieving user ID ${req.body.id}: ${err}` })
+    })
+}
+
 // Create new user
 exports.createUser = async (req, res) => {
   knex('users')
@@ -35,17 +49,34 @@ exports.createUser = async (req, res) => {
       'quantity': req.body.quantity,
       'total': req.body.total,
       'orderDate': Date.now(),
-      'fulfilled': req.body.fulfilled,
+      'fulfilled': false,
     })
-    .then(() => {
+    .then(data => {
       // Send a success message in response
-      res.json({ message: `Order submitted for ${req.body.firstName} ${req.body.lastName}!` })
+      res.status(201).json({status: 'CREATED', id : data[0] });
+      // res.json({ data: `${data}` })
     })
     .catch(err => {
       // Send a error message in response
-      res.json({ message: `There was an error creating ${req.body.firstName} ${req.body.lastName} user: ${err}` })
+      res.json({ message: `There was an error creating a new order: ${err}` })
     })
 }
+
+//TO DO
+// router.patch('/api/magic', usersRoutes.updateFulfilled)
+exports.updateFulfilled = async (req, res) => {
+  knex('users')
+    .where('id', req.body.id)
+    .update({fulfilled: `${req.body.fulfilled}`}, ['id', 'fulfilled'])
+    .then( () => {
+      res.json({message: `User ID ${req.body.id}'s order fulfilled status set to ${req.body.fulfilled === 1 ? true : false }`})
+    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error updating user ID ${req.body.id}'s order: ${err}` })
+    })
+}
+
 
 // Remove specific user
 exports.deleteUser = async (req, res) => {

@@ -50,5 +50,5 @@ export const CustomInput = (props) => {
     label: PropTypes.string,
     name: PropTypes.string,
     placeholder: PropTypes.string,
-    required: PropTypes.string,
+    required: PropTypes.bool,
   };
