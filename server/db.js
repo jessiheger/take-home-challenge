@@ -40,7 +40,7 @@ knex.schema
           table.integer('quantity')
           table.string('total')
           table.string('orderDate')
-          table.integer('fulfilled')
+          table.boolean('fulfilled')
         })
         .then(() => {
           // Log success message

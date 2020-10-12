@@ -10,7 +10,7 @@ import { PreviousButton, NextButton } from './Buttons'
 
 export const MasterForm = () => {
     const { errors, register } = useForm();
-    const [ userInfo, setUserInfo ] = useState({"quantity": 1});
+    const [ userInfo, setUserInfo ] = useState({"quantity": 1, "total": "49.99"});
     const [ currentStep, setCurrentStep ] = useState("QUANTITY");
     const [ axiosResponse, setAxiosResponse ] = useState("");
  
@@ -28,7 +28,7 @@ export const MasterForm = () => {
         e.preventDefault();
             axios({
                 method: 'post',
-                url: 'http://localhost:4001/users/create',
+                url: 'http://localhost:4001/api/magic',
                 data: userInfo
             })
             .then( res => {

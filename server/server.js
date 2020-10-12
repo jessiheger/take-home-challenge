@@ -26,7 +26,7 @@ app.get('/', (req, res, next) => {
 });
 
 // Implement users route
-app.use('/users', userRouter)
+app.use('/api/magic', userRouter)
 
 // Implement 500 error route
 app.use(function (err, req, res, next) {
