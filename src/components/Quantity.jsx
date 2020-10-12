@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 export const Quantity = props => {
     const { currentStep, addToOrder } = props;
     const [quantity, setQuantity ] = useState(1);
-    const [price, setPrice ] = useState(49.99);
+    const [price, setPrice ] = useState("49.99");
 
     useEffect(() => {
-            setPrice(49.99 * quantity);
+            setPrice((49.99 * quantity).toString());
     }, [quantity]);
 
 

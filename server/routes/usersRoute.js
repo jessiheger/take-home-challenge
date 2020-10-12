@@ -9,13 +9,13 @@ const router = express.Router()
 
 router.get('/all', usersRoutes.getUsers)
 
-router.get('/:id', usersRoutes.getByUserId)
+router.get('/:id([0-9]+)', usersRoutes.getByUserId)
 
 router.post('/', usersRoutes.createUser)
 
-router.patch('/', usersRoutes.updateFulfilled)
+router.put('/', usersRoutes.updateFulfilled)
 
-router.delete('/:id', usersRoutes.deleteUser)
+router.delete('/:id([0-9]+)', usersRoutes.deleteUser)
 
 router.put('/reset', usersRoutes.resetUsers)
 

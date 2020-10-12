@@ -1,19 +1,16 @@
-// Import database
 const knex = require('../db')
 
 // Retrieve all users
 exports.getUsers = async (req, res) => {
-  // Get all users from database
   knex
-    .select('*') // select all records
-    .from('users') // from 'users' table
+    .select('*')
+    .from('users')
     .then(userData => {
-      // Send users extracted from database in response
       res.json(userData)
     })
     .catch(err => {
-      // Send a error message in response
-      res.json({ message: `There was an error retrieving users: ${err}` })
+      res.status(404)
+      res.json({ message: `Resource not found: ${err}` })
     })
 }
 
@@ -27,7 +24,8 @@ exports.getByUserId = async (req, res) => {
       res.json(userData)
     })
     .catch(err => {
-      res.json({ message: `There was an error retrieving user ID ${req.body.id}: ${err}` })
+      res.status(404);
+      res.json({ message: `Resource not found: ${err}` })
     })
 }
 
@@ -51,63 +49,58 @@ exports.createUser = async (req, res) => {
       'orderDate': Date.now(),
       'fulfilled': false,
     })
-    .then(data => {
-      // Send a success message in response
-      res.status(201).json({status: 'CREATED', id : data[0] });
-      // res.json({ data: `${data}` })
+    .then( data => {
+      res.status(201);
+      res.json({ id: `${data}` })
     })
     .catch(err => {
-      // Send a error message in response
       res.json({ message: `There was an error creating a new order: ${err}` })
     })
 }
 
-//TO DO
-// router.patch('/api/magic', usersRoutes.updateFulfilled)
 exports.updateFulfilled = async (req, res) => {
+    const id = req.body.id;
+    const fulfilled = req.body.fulfilled
   knex('users')
-    .where('id', req.body.id)
-    .update({fulfilled: `${req.body.fulfilled}`}, ['id', 'fulfilled'])
+    .where('id', id)
+    .update({fulfilled: `${fulfilled}`}, ['id', 'fulfilled'])
     .then( () => {
-      res.json({message: `User ID ${req.body.id}'s order fulfilled status set to ${req.body.fulfilled === 1 ? true : false }`})
+      res.status(204);
+      res.json({message: `Resource updated successfully`})
     })
     .catch(err => {
-      // Send a error message in response
-      res.json({ message: `There was an error updating user ID ${req.body.id}'s order: ${err}` })
+      res.status(404);
+      res.json({ message: `Resource not found: ${err}` })
     })
 }
 
 
 // Remove specific user
 exports.deleteUser = async (req, res) => {
-  // Find specific user in the database and remove it
   let id = req.params.id;
   knex('users')
     .where('id', id)
     .del()
     .then(() => {
-      // Send a success message in response
-      res.json({ message: `User ID: ${id} deleted.` })
+      res.status(204);
+      res.json({message: `Resource deleted successfully`})
     })
     .catch(err => {
-      // Send a error message in response
-      res.json({ message: `There was an error deleting user (ID: ${id}): ${err}` })
+      res.status(404);
+      res.json({ message: `Resource not found: ${err}` })
     })
 }
 
 // Remove all users on the list
 exports.resetUsers = async (req, res) => {
-  // Remove all users from database
   knex
-    .select('*') // select all records
-    .from('users') // from 'users' table
-    .truncate() // remove the selection
+    .select('*')
+    .from('users')
+    .truncate()
     .then(() => {
-      // Send a success message in response
       res.json({ message: 'User list cleared.' })
     })
     .catch(err => {
-      // Send a error message in response
       res.json({ message: `There was an error deleting user list: ${err}.` })
     })
 }
