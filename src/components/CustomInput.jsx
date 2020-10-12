@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { ContactFields } from './formFields';
 import { BillingFields } from "./formFields";
+import PropTypes from 'prop-types';
 
 
 export const CustomInput = (props) => {
-    const {label, name, placeholder, required, validation, message, register, addToOrder } = props;
+    const { addToOrder, label, name, placeholder, required } = props;
     const [ fieldValue, setFieldValue ] = useState("");
     const [ error, setError ] = useState("")
     const ref = useRef();
@@ -43,3 +44,11 @@ export const CustomInput = (props) => {
       </div>
     )
   }
+
+  CustomInput.propTypes = {
+    addToOrder: PropTypes.func,
+    label: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    required: PropTypes.string,
+  };

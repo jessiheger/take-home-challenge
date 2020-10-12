@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Confirmation = props => {
     const { axiosResponse, userInfo, currentStep } = props;
@@ -18,3 +19,9 @@ export const Confirmation = props => {
         : <div></div>
     )
 }
+
+Confirmation.propTypes = {
+    axiosResponse: PropTypes.string,
+    currentStep: PropTypes.string,
+    userInfo: PropTypes.object,
+};
