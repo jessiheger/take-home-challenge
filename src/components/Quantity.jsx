@@ -20,14 +20,15 @@ export const Quantity = props => {
     return (
         currentStep === 'QUANTITY' ? 
             <div>
-                <label>Quantity</label>
-                <select name="quantity" onChange={(e) => onChange(e.target.value)}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                </select>
-
-                <h4>Price: ${price} </h4>
+                <div style={Quantity.styles.rowContainer}>
+                    <label>Quantity</label>
+                    <select name="quantity" onChange={(e) => onChange(e.target.value)} style={Quantity.styles.select}>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
+                </div>
+                <div style={Quantity.styles.rowContainer}>Price: ${price} </div>
             </div>
         : <div></div>
     )
@@ -37,3 +38,16 @@ Quantity.propTypes = {
     addToOrder: PropTypes.func,
     currentStep: PropTypes.string,
 };
+
+Quantity.styles = {
+    select: {
+        padding: '.25rem',
+        fontFamily: 'larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif',
+        marginLeft: '10px',
+        borderRadius: '.25rem',
+        width: '15%',
+    },
+    rowContainer: {
+        marginBottom: '1rem'
+    }
+}

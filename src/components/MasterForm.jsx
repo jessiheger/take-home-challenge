@@ -1,15 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Quantity } from './Quantity';
 import { Contact } from './Contact';
 import { Billing } from './Billing';
 import { Confirmation } from './Confirmation';
 import { PreviousButton, NextButton } from './Buttons'
+import { Breadcrumbs } from './Breadcrumbs';
 
 
 export const MasterForm = () => {
-    const { errors, register } = useForm();
     const [ userInfo, setUserInfo ] = useState({"quantity": 1, "total": "49.99"});
     const [ currentStep, setCurrentStep ] = useState("QUANTITY");
     const [ axiosResponse, setAxiosResponse ] = useState("");
@@ -38,8 +37,9 @@ export const MasterForm = () => {
 
   
     return (
-      <div>
-        <form style={{display: 'flex', flexDirection: 'column'}}>
+      <div style={MasterForm.styles.container}>
+        <Breadcrumbs currentStep={currentStep} />
+        <form style={MasterForm.styles.form}>
             <Quantity addToOrder={addToOrder} currentStep={currentStep} />
             <Contact addToOrder={addToOrder} currentStep={currentStep} />
             <Billing addToOrder={addToOrder} currentStep={currentStep} />
@@ -52,3 +52,18 @@ export const MasterForm = () => {
       </div>
     );
   };
+
+  MasterForm.styles = {
+      container: {
+          width: '100%',
+          minWidth: '400px',
+      },
+      form: {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'rgb(255, 255, 255)',
+        padding: '2rem',
+        border: '1px solid rgb(237, 237, 240)',
+        overflowY: 'auto',
+      }
+  }
