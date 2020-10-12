@@ -39,7 +39,7 @@ exports.createUser = async (req, res) => {
     })
     .then(() => {
       // Send a success message in response
-      res.json({ message: `User ${req.body.firstName} ${req.body.lastName} created.` })
+      res.json({ message: `Order submitted for ${req.body.firstName} ${req.body.lastName}!` })
     })
     .catch(err => {
       // Send a error message in response
@@ -63,12 +63,12 @@ exports.deleteUser = async (req, res) => {
     })
 }
 
-// Remove all books on the list
+// Remove all users on the list
 exports.resetUsers = async (req, res) => {
-  // Remove all books from database
+  // Remove all users from database
   knex
     .select('*') // select all records
-    .from('users') // from 'books' table
+    .from('users') // from 'users' table
     .truncate() // remove the selection
     .then(() => {
       // Send a success message in response

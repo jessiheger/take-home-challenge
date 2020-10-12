@@ -28,7 +28,7 @@ export const ContactFields = [
         name: 'street1',
         placeholder: '1234 Strawberry Lane',
         required: true,
-        value: /[^A-Za-z0-9-( )]+/,
+        value: /^[A-Za-z0-9-( )]+$/i,
         message: 'Invalid street address. Please use only numbers, letters, spaces, and dashes (-).',
     },
     {
@@ -36,7 +36,7 @@ export const ContactFields = [
         name: 'street2',
         placeholder: 'Apt A',
         required: false,
-        value: /[^A-Za-z0-9-( )]+/,
+        value: /^[A-Za-z0-9 ,.'-]+$/i,
         message: 'Invalid street address. Please use only numbers, letters, spaces, and dashes (-).',
     },
     {
@@ -44,7 +44,7 @@ export const ContactFields = [
         name: 'city',
         placeholder: 'Los Angeles',
         required: true,
-        value: /[^A-Za-z-( )]+/,
+        value: /^[A-Za-z-( )]+/i,
         message: 'Invalid city. Please use only letters, spaces, and dashes (-).',
     },
     {
@@ -52,24 +52,24 @@ export const ContactFields = [
         name: 'state',
         placeholder: 'CA',
         required: true,
-        value: /[^A-Za-z-( )]+/,
-        message: 'Invalid state. Please use only letters, spaces, and dashes (-).',
+        value: /[A-Z][A-Z]/,
+        message: 'Invalid state. Please enter two-letter abbreviation (CA, NY, etc.).',
     },
     {
         label: 'Zipcode',
         name: 'zip',
         placeholder: '12345',
         required: true,
-        value: /[^0-9]+/,
-        message: 'Invalid zipcode. Please use only letters, spaces, and dashes (-).',
+        value: /^[0-9]+/i,
+        message: 'Invalid zipcode. Please enter 5-digit zipcode.',
     },
     {
-        label: 'Phone Number',
+        label: 'Phone Number (###-###-####)',
         name: 'phone',
         placeholder: '111-222-3333',
         required: true,
-        value: /^[0-9-( )]+$/,
-        message: 'Invalid phone number. Please use only numbers, spaces, and dashes (-).',
+        value: /^\d{3}-\d{3}-\d{4}$/,
+        message: 'Invalid phone number. Please enter as ###-###-####.',
     }
 ];
 
@@ -79,7 +79,7 @@ export const BillingFields = [
         name: 'ccNum',
         placeholder: 'XXXXXXXX',
         required: true,
-        value: /[^0-9]+/,
+        value: /^[0-9]+/i,
         message: 'Invalid card number. Please use only numbers.'
     },
     {
@@ -87,7 +87,7 @@ export const BillingFields = [
         name: 'exp',
         placeholder: '03/25',
         required: true,
-        value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
+        value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/i,
         message: 'Invalid expiration date. Please enter as MM/YY.'
 
     }

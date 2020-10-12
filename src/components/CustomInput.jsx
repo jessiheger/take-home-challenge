@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-import { useForm } from "react-hook-form";
 import { ContactFields } from './formFields';
 import { BillingFields } from "./formFields";
 
 
 export const CustomInput = (props) => {
-    const { errors } = useForm();
     const {label, name, placeholder, required, validation, message, register, addToOrder } = props;
     const [ fieldValue, setFieldValue ] = useState("");
     const [ error, setError ] = useState("")

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export const Quantity = props => {
-    const { currentStep, handleChange } = props;
+    const { currentStep, addToOrder } = props;
     const [quantity, setQuantity ] = useState(1);
     const [price, setPrice ] = useState(49.99);
 
@@ -12,7 +12,8 @@ export const Quantity = props => {
 
     const onChange = (val) => {
         setQuantity(val);
-        handleChange("quantity", val);
+        addToOrder("quantity", val);
+        addToOrder("total", price);
     }
 
     return (
