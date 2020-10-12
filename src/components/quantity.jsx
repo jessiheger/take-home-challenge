@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-export const Quantity = () => {
+export const Quantity = props => {
+    const { currentStep, addToOrder } = props;
     const [quantity, setQuantity ] = useState(1);
     const [price, setPrice ] = useState(49.99);
 
@@ -11,18 +12,22 @@ export const Quantity = () => {
 
     const onChange = (val) => {
         setQuantity(val);
+        addToOrder("quantity", val);
+        addToOrder("total", price);
     }
 
     return (
-        <div>
-            <label>Quantity</label>
-            <select name="quantity" onChange={(e) => onChange(e.target.value)}>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-            </select>
+        currentStep === 'QUANTITY' ? 
+            <div>
+                <label>Quantity</label>
+                <select name="quantity" onChange={(e) => onChange(e.target.value)}>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                </select>
 
-            <h4>Price: ${price} </h4>
-        </div>
+                <h4>Price: ${price} </h4>
+            </div>
+        : <div></div>
     )
 }
