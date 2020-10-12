@@ -81,16 +81,17 @@ exports.updateFulfilled = async (req, res) => {
 // Remove specific user
 exports.deleteUser = async (req, res) => {
   // Find specific user in the database and remove it
+  let id = req.params.id;
   knex('users')
-    .where('id', req.body.id)
+    .where('id', id)
     .del()
     .then(() => {
       // Send a success message in response
-      res.json({ message: `User ${req.body.firstName} ${req.body.lastName} (ID: ${req.body.id}) deleted.` })
+      res.json({ message: `User ID: ${id} deleted.` })
     })
     .catch(err => {
       // Send a error message in response
-      res.json({ message: `There was an error deleting ${req.body.firstName} ${req.body.lastName} (ID: ${req.body.id}) user: ${err}` })
+      res.json({ message: `There was an error deleting user (ID: ${id}): ${err}` })
     })
 }
 

@@ -11,11 +11,11 @@ router.get('/all', usersRoutes.getUsers)
 
 router.get('/:id', usersRoutes.getByUserId)
 
-router.post('/create', usersRoutes.createUser)
+router.post('/', usersRoutes.createUser)
 
-router.patch('/api/magic', usersRoutes.updateFulfilled)
+router.patch('/', usersRoutes.updateFulfilled)
 
-router.put('/delete', usersRoutes.deleteUser)
+router.delete('/:id', usersRoutes.deleteUser)
 
 router.put('/reset', usersRoutes.resetUsers)
 
