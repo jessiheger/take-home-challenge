@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ContactFields } from './formFields';
 import { BillingFields } from "./formFields";
 import PropTypes from 'prop-types';
+import './styles.css';
 
 
 export const CustomInput = (props) => {
@@ -29,9 +30,10 @@ export const CustomInput = (props) => {
   }
   
     return (
-      <div style={{display: 'flex', flexDirection: 'column', marginBottom: '20px'}}>
-        <label>{label}</label>
+      <div style={CustomInput.styles.container} >
+        <label style={CustomInput.styles.label} >{label}</label>
         <input
+          style={CustomInput.styles.input}
           value={fieldValue}
           name={name}
           placeholder={placeholder}
@@ -52,3 +54,26 @@ export const CustomInput = (props) => {
     placeholder: PropTypes.string,
     required: PropTypes.bool,
   };
+
+  CustomInput.styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginBottom: '1.5rem'
+    },
+    label: {
+      marginBottom: '.5rem'
+    },
+    input: {
+      fontSize: '1rem',
+      lineHeight: 1.75,
+      appearance: 'none',
+      background: 'rgb(255, 255, 255)',
+      border: '1px solid rgb(237, 237, 240)',
+      borderRadius: '0.25rem',
+      color: 'rgb(82, 77, 110)',
+      fontFamily: 'larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif',
+      outline: 'none',
+      padding: '10px 1.5rem 10px .5rem',
+    }
+  }

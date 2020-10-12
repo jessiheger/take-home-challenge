@@ -37,7 +37,7 @@ export const PreviousButton = props => {
   if (currentStep !== 'QUANTITY' && currentStep !== 'CONFIRMATION') {
     return (
       <button 
-        type="button" onClick={() => setPreviousStep(previousStep)}>
+        type="button" onClick={() => setPreviousStep(previousStep)} style={PreviousButton.styles.button}>
       Previous
       </button>
     )
@@ -52,13 +52,13 @@ export const NextButton = props => {
     if (currentStep === 'QUANTITY' || currentStep === 'CONTACT') {
       return (
         <button 
-          type="button" onClick={() => setNextStep(nextStep)}>
+          type="button" onClick={() => setNextStep(nextStep)} style={NextButton.styles.button}>
         Next
         </button>        
       )
     } else if (currentStep === 'BILLING') {
       return (
-          <button onClick= {(e) => submitOrder(e, nextStep, submitNewOrder, setNextStep)}>Submit Order</button>
+          <button onClick= {(e) => submitOrder(e, nextStep, submitNewOrder, setNextStep)}>Let's do this!</button>
       );
     }
     return null;
@@ -74,3 +74,27 @@ NextButton.propTypes = {
   setNextStep: PropTypes.func,
   submitNewOrder: PropTypes.func
 };
+
+PreviousButton.styles = {
+  button: {
+    backgroundColor: 'rgb(51, 46, 84)',
+    borderColor: 'rgb(51, 46, 84)',
+    color: 'rgb(255, 255, 255)',
+    borderRadius: '0.25rem',
+    fontFamily: 'larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif',
+    padding: '1rem',
+    cursor: 'pointer',
+  }
+}
+
+NextButton.styles = {
+  button: {
+    backgroundColor: 'rgb(51, 46, 84)',
+    borderColor: 'rgb(51, 46, 84)',
+    color: 'rgb(255, 255, 255)',
+    borderRadius: '0.25rem',
+    fontFamily: 'larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif',
+    padding: '1rem',
+    cursor: 'pointer',
+  }
+}

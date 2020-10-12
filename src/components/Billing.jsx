@@ -31,5 +31,4 @@ return (
 Billing.propTypes = {
   addToOrder: PropTypes.func,
   currentStep: PropTypes.string,
-  register: PropTypes.func,
 };

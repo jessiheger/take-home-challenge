@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    font-family: larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: #F8F8FA;
+    color: rgb(51 46 84);
+    margin: 2rem;
+}
