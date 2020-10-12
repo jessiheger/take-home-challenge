@@ -4,7 +4,7 @@ import { ContactFields } from './formFields';
 
 
 export const Contact = props => {
-    const { currentStep, handleChange, register } = props;
+    const { currentStep, addToOrder, register } = props;
   
     return (
         currentStep === 'CONTACT' ? 
@@ -20,7 +20,7 @@ export const Contact = props => {
                 validation={field.value}
                 message={field.message}
                 register={register}
-                handleChange={(val) => handleChange(field.name, val)}
+                addToOrder={addToOrder}
                 ></CustomInput>
             )
             })}

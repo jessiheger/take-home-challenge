@@ -4,7 +4,7 @@ export const ContactFields = [
         name: 'firstName',
         placeholder: 'Minnie',
         required : true,
-        value: /^$|\s+/,
+        value: /^[a-z ,.'-]+$/i,
         message: 'Please provide first name.'
     },
     {
@@ -12,12 +12,12 @@ export const ContactFields = [
         name: 'lastName',
         placeholder: 'Mouse',
         required: true,
-        value: /^$|\s+/,
+        value: /^[a-z ,.'-]+$/i,
         message: 'Please provide last name.'
     },
     {
         label: 'Email Address',
-        name: 'emailAddress',
+        name: 'email',
         placeholder: 'minniemouse@disney.com',
         required: true,
         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -25,7 +25,7 @@ export const ContactFields = [
     },
     {
         label: 'Address',
-        name: 'address',
+        name: 'street1',
         placeholder: '1234 Strawberry Lane',
         required: true,
         value: /[^A-Za-z0-9-( )]+/,
@@ -33,7 +33,7 @@ export const ContactFields = [
     },
     {
         label: 'Apartment/Unit',
-        name: 'address2',
+        name: 'street2',
         placeholder: 'Apt A',
         required: false,
         value: /[^A-Za-z0-9-( )]+/,
@@ -57,7 +57,7 @@ export const ContactFields = [
     },
     {
         label: 'Zipcode',
-        name: 'zipcode',
+        name: 'zip',
         placeholder: '12345',
         required: true,
         value: /[^0-9]+/,
@@ -65,7 +65,7 @@ export const ContactFields = [
     },
     {
         label: 'Phone Number',
-        name: 'phoneNumber',
+        name: 'phone',
         placeholder: '111-222-3333',
         required: true,
         value: /^[0-9-( )]+$/,
@@ -76,7 +76,7 @@ export const ContactFields = [
 export const BillingFields = [
     {
         label: 'Credit Card Number (numbers only, no dashes)',
-        name: 'creditCardNumber',
+        name: 'ccNum',
         placeholder: 'XXXXXXXX',
         required: true,
         value: /[^0-9]+/,
@@ -84,7 +84,7 @@ export const BillingFields = [
     },
     {
         label: 'Expiration (MM/YY)',
-        name: 'expiration',
+        name: 'exp',
         placeholder: '03/25',
         required: true,
         value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,

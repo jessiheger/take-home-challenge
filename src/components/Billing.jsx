@@ -4,7 +4,7 @@ import { BillingFields } from './formFields';
 
 
 export const Billing = props => {
-    const { currentStep, handleChange, register } = props;
+    const { currentStep, addToOrder, register } = props;
   
 return (
     currentStep === 'BILLING' ?
@@ -20,7 +20,7 @@ return (
               value={field.value}
               message={field.message}
               register={register}
-              handleChange={(val) => handleChange(field.name, val)}
+              addToOrder={addToOrder}
             ></CustomInput>
           )
         })}
