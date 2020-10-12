@@ -40,9 +40,9 @@ export const MasterForm = () => {
     return (
       <div>
         <form style={{display: 'flex', flexDirection: 'column'}}>
-            <Quantity addToOrder={addToOrder} currentStep={currentStep} register={register}/>
-            <Contact addToOrder={addToOrder} currentStep={currentStep} register={register}/>
-            <Billing addToOrder={addToOrder} currentStep={currentStep} register={register}/>
+            <Quantity addToOrder={addToOrder} currentStep={currentStep} />
+            <Contact addToOrder={addToOrder} currentStep={currentStep} />
+            <Billing addToOrder={addToOrder} currentStep={currentStep} />
             <Confirmation currentStep={currentStep} axiosResponse={axiosResponse} userInfo={userInfo}/>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <PreviousButton currentStep={currentStep} setPreviousStep={setPreviousStep} />

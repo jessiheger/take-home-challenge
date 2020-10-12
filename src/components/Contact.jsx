@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CustomInput } from './CustomInput';
 import { ContactFields } from './formFields';
 
 
 export const Contact = props => {
-    const { currentStep, addToOrder, register } = props;
+    const { addToOrder, currentStep } = props;
   
     return (
         currentStep === 'CONTACT' ? 
@@ -17,9 +18,6 @@ export const Contact = props => {
                 key={field.name}
                 placeholder={field.placeholder}
                 required={field.required}
-                validation={field.value}
-                message={field.message}
-                register={register}
                 addToOrder={addToOrder}
                 ></CustomInput>
             )
@@ -28,3 +26,8 @@ export const Contact = props => {
         : <div></div>
     );
   };
+
+  Contact.propTypes = {
+    addToOrder: PropTypes.func,
+    currentStep: PropTypes.string,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const setPrev = (currentStep) => {
     switch ( currentStep ) {
@@ -62,3 +63,14 @@ export const NextButton = props => {
     }
     return null;
 }
+
+PreviousButton.propTypes = {
+  currentStep: PropTypes.string,
+  setPreviousStep: PropTypes.func
+};
+
+NextButton.propTypes = {
+  currentStep: PropTypes.string,
+  setNextStep: PropTypes.func,
+  submitNewOrder: PropTypes.func
+};
