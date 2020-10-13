@@ -27,7 +27,7 @@ const setPrev = (currentStep) => {
 
   const submitOrder = (e, nextStep, submitNewOrder, setNextStep) => {
     submitNewOrder(e);
-    setNextStep(nextStep);
+    setNextStep(e, nextStep);
   }
 
 export const PreviousButton = props => {
@@ -56,7 +56,7 @@ export const NextButton = props => {
     if (currentStep === 'QUANTITY' || currentStep === 'CONTACT') {
       return (
         <button 
-          type="button" onClick={() => setNextStep(nextStep)} style={getNextButtonStyle()} disabled={isDisabled}>
+          type="button" onClick={(e) => setNextStep(e, nextStep)} style={getNextButtonStyle()} disabled={isDisabled}>
         Next
         </button>        
       )

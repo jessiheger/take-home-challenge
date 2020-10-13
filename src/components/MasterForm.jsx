@@ -37,7 +37,10 @@ export const MasterForm = () => {
  
     const setPreviousStep = prevStep => setCurrentStep(prevStep);
     
-    const setNextStep = nextStep => setCurrentStep(nextStep);
+    const setNextStep = (e, nextStep) => {
+        e.preventDefault();
+        setCurrentStep(nextStep);
+    }
 
     const addToOrder = (fieldName, val) => {
         let newState = Object.assign({}, userInfo);
