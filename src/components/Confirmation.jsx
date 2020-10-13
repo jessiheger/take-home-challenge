@@ -8,20 +8,32 @@ export const Confirmation = props => {
     return (
         currentStep === 'CONFIRMATION' ? 
         <div>
-            <h3>{axiosResponse}</h3>
+            {/* TO DO: ADD ERROR MESSAGE OPTION */}
+            <h2>Thank you! Order confirmed.</h2>
 
-            <div>Quantity: {userInfo.quantity}</div>
-            <div>Price: {userInfo.total}</div>
+            <h3>An email confirmation has been sent to the email address provided.</h3>
 
-            <h5>Contact Details:</h5>
-            <div>Email: {userInfo.email}</div>
+            <div style={{margin: '0 0 1rem 1rem'}} >Quantity: {userInfo.quantity}</div>
+            <div style={{margin: '0 0 1rem 1rem'}}>Total: ${userInfo.total}</div>
+
+            <h3>Contact Details:</h3>
+            <div style={{margin: '0 0 1rem 1rem'}}>Name: {userInfo.firstName} {userInfo.lastName}</div>
+            <div style={{margin: '0 0 1rem 1rem'}}>Email: {userInfo.email}</div>
+            <div style={{margin: '0 0 1rem 1rem'}}>Adress:</div>
+            <div style={{margin: '0 0 1rem 2rem'}}>{userInfo.street1}</div>
+            <div style={{margin: '0 0 1rem 2rem'}}>{userInfo.street2 ? userInfo.street2 : null}</div>
+            <div style={{margin: '0 0 1rem 2rem'}}>{userInfo.city}, {userInfo.state} {userInfo.zip}</div>
+
+            <h3>Payment Details:</h3>
+            <div style={{margin: '1rem'}}>Credit Card: -{userInfo.ccNum.substr(userInfo.ccNum.length - 4)}</div>
+
         </div>
         : <div></div>
     )
 }
 
 Confirmation.propTypes = {
-    axiosResponse: PropTypes.string,
-    currentStep: PropTypes.string,
-    userInfo: PropTypes.object,
+    axiosResponse: PropTypes.string.isRequired,
+    currentStep: PropTypes.string.isRequired,
+    userInfo: PropTypes.object.isRequired,
 };

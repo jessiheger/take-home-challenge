@@ -15,7 +15,7 @@ export const CustomInput = (props) => {
     }
 
     const handleUserStateChange = () => {
-          if (required || (required && validation && !validation.test(fieldValue))) {
+          if (required && validation && !validation.test(fieldValue)) {
             setError(message);
             setFieldValue("");
           } else {
