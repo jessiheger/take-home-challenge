@@ -39,7 +39,25 @@ export const MasterForm = () => {
     
     const setNextStep = (e, nextStep) => {
         e.preventDefault();
-        setCurrentStep(nextStep);
+        if (currentStep === 'CONTACT') {
+            axios({
+                method: 'post',
+                url: 'http://localhost:4001/api/magic/checkForUser',
+                data: userInfo
+            })
+            .then( res => {
+                console.log(res.data)
+                if (res.data.length === 0) {
+                    setCurrentStep(nextStep)
+                } else {
+                    setCurrentStep('DUPLICATE_USER');
+                }
+            }).catch(error => {
+                console.log(error);
+                setCurrentStep(nextStep);
+            });
+        }
+        setCurrentStep(nextStep)
     }
 
     const addToOrder = (fieldName, val) => {

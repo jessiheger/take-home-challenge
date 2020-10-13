@@ -11,6 +11,8 @@ router.get('/all', usersRoutes.getUsers)
 
 router.get('/:id([0-9]+)', usersRoutes.getByUserId)
 
+router.post('/checkForUser', usersRoutes.getByContactInfo)
+
 router.post('/', usersRoutes.createUser)
 
 router.put('/', usersRoutes.updateFulfilled)
