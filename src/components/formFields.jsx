@@ -4,7 +4,7 @@ export const ContactFields = [
         name: 'firstName',
         placeholder: 'Minnie',
         required : true,
-        value: /^[a-z ,.'-]+$/i,
+        validation: /^[a-z ,.'-]+$/i,
         message: 'Please provide first name.'
     },
     {
@@ -12,7 +12,7 @@ export const ContactFields = [
         name: 'lastName',
         placeholder: 'Mouse',
         required: true,
-        value: /^[a-z ,.'-]+$/i,
+        validation: /^[a-z ,.'-]+$/i,
         message: 'Please provide last name.'
     },
     {
@@ -20,7 +20,7 @@ export const ContactFields = [
         name: 'email',
         placeholder: 'minniemouse@disney.com',
         required: true,
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        validation: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
         message: 'Invalid email address.'
     },
     {
@@ -28,7 +28,7 @@ export const ContactFields = [
         name: 'street1',
         placeholder: '1234 Strawberry Lane',
         required: true,
-        value: /^[A-Za-z0-9-( )]+$/i,
+        validation: /^[A-Za-z0-9-( )]+$/i,
         message: 'Invalid street address. Please use only numbers, letters, spaces, and dashes (-).',
     },
     {
@@ -36,7 +36,7 @@ export const ContactFields = [
         name: 'street2',
         placeholder: 'Apt A',
         required: false,
-        value: /^[A-Za-z0-9 ,.'-]+$/i,
+        validation: /^[A-Za-z0-9 ,.'-]+$/i,
         message: 'Invalid street address. Please use only numbers, letters, spaces, and dashes (-).',
     },
     {
@@ -44,7 +44,7 @@ export const ContactFields = [
         name: 'city',
         placeholder: 'Los Angeles',
         required: true,
-        value: /^[A-Za-z-( )]+/i,
+        validation: /^[A-Za-z-( )]+/i,
         message: 'Invalid city. Please use only letters, spaces, and dashes (-).',
     },
     {
@@ -52,7 +52,7 @@ export const ContactFields = [
         name: 'state',
         placeholder: 'CA',
         required: true,
-        value: /[A-Z][A-Z]/,
+        validation: /[A-Z][A-Z]/,
         message: 'Invalid state. Please enter two-letter abbreviation (CA, NY, etc.).',
     },
     {
@@ -60,7 +60,7 @@ export const ContactFields = [
         name: 'zip',
         placeholder: '12345',
         required: true,
-        value: /^[0-9]+/i,
+        validation: /^[0-9]+/i,
         message: 'Invalid zipcode. Please enter 5-digit zipcode.',
     },
     {
@@ -68,7 +68,7 @@ export const ContactFields = [
         name: 'phone',
         placeholder: '111-222-3333',
         required: true,
-        value: /^\d{3}-\d{3}-\d{4}$/,
+        validation: /^\d{3}-\d{3}-\d{4}$/,
         message: 'Invalid phone number. Please enter as ###-###-####.',
     }
 ];
@@ -79,7 +79,7 @@ export const BillingFields = [
         name: 'ccNum',
         placeholder: 'XXXXXXXX',
         required: true,
-        value: /^[0-9]+/i,
+        validation: /^[0-9]+/i,
         message: 'Invalid card number. Please use only numbers.'
     },
     {
@@ -87,7 +87,7 @@ export const BillingFields = [
         name: 'exp',
         placeholder: '03/25',
         required: true,
-        value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/i,
+        validation: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/i,
         message: 'Invalid expiration date. Please enter as MM/YY.'
 
     }

@@ -46,19 +46,23 @@ export const PreviousButton = props => {
 }
 
 export const NextButton = props => {
-    const { currentStep, setNextStep, submitNewOrder } = props;
+    const { currentStep, setNextStep, submitNewOrder, isDisabled } = props;
     const nextStep = setNext(currentStep);
+
+    const getNextButtonStyle = () => {
+      return isDisabled ? { ...NextButton.styles.button, ...NextButton.styles.disabled } : NextButton.styles.button;
+    }
 
     if (currentStep === 'QUANTITY' || currentStep === 'CONTACT') {
       return (
         <button 
-          type="button" onClick={() => setNextStep(nextStep)} style={NextButton.styles.button}>
+          type="button" onClick={() => setNextStep(nextStep)} style={getNextButtonStyle()} disabled={isDisabled}>
         Next
         </button>        
       )
     } else if (currentStep === 'BILLING') {
       return (
-          <button onClick= {(e) => submitOrder(e, nextStep, submitNewOrder, setNextStep)}>Let's do this!</button>
+          <button onClick= {(e) => submitOrder(e, nextStep, submitNewOrder, setNextStep)} disabled={isDisabled}>Let's do this!</button>
       );
     }
     return null;
@@ -72,7 +76,8 @@ PreviousButton.propTypes = {
 NextButton.propTypes = {
   currentStep: PropTypes.string,
   setNextStep: PropTypes.func,
-  submitNewOrder: PropTypes.func
+  submitNewOrder: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };
 
 PreviousButton.styles = {
@@ -96,5 +101,10 @@ NextButton.styles = {
     fontFamily: 'larssiet, "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, Verdana, sans-serif',
     padding: '1rem',
     cursor: 'pointer',
+  },
+  disabled: {
+    backgroundColor: 'grey',
+    borderColor: 'grey',
+    cursor: 'not-allowed'
   }
 }

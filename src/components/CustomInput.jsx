@@ -7,7 +7,7 @@ import './styles.css';
 
 
 export const CustomInput = (props) => {
-    const { addToOrder, label, name, placeholder, required } = props;
+    const { label, message, name, placeholder, required, validation, addToOrder, removeFromErrorList } = props;
     const [ fieldValue, setFieldValue ] = useState("");
     const [ error, setError ] = useState("")
     const ref = useRef();
@@ -17,15 +17,13 @@ export const CustomInput = (props) => {
     }
 
     const handleUserStateChange = () => {
-          const formField = ContactFields.filter( field => field.name === name)[0] || BillingFields.filter( field => field.name === name)[0];
-          if (!formField.value.test(fieldValue)) {
-              setError(formField.message);
-              setFieldValue("");
-              ref.current.focus();
+          if (required && !validation.test(fieldValue)) {
+            setError(message);
+            setFieldValue("");
           } else {
-              setFieldValue(fieldValue);
-              addToOrder(name, fieldValue);
-              setError("");
+            removeFromErrorList(name);
+            setError("");
+            addToOrder(name, fieldValue);
           }
   }
   
@@ -48,11 +46,14 @@ export const CustomInput = (props) => {
   }
 
   CustomInput.propTypes = {
-    addToOrder: PropTypes.func,
     label: PropTypes.string,
+    message: PropTypes.string,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
+    validation: PropTypes.string,
+    addToOrder: PropTypes.func,
+    removeFromErrorList: PropTypes.func,
   };
 
   CustomInput.styles = {
