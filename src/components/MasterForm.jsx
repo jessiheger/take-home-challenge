@@ -27,11 +27,13 @@ export const MasterForm = () => {
             default:
                 setFormFields([]);
         }
+    }, [currentStep]);
 
+    useEffect(() => {
         const errors = [];
         formFields.forEach( field => field.required ? errors.push(field.name) : null);
         setErrors(errors);
-    }, [currentStep]);
+    }, [formFields])
  
     const setPreviousStep = prevStep => setCurrentStep(prevStep);
     
