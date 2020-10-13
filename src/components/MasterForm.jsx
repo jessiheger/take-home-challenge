@@ -1,29 +1,35 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Quantity } from './Quantity';
-import { Contact } from './Contact';
-import { Billing } from './Billing';
 import { Confirmation } from './Confirmation';
 import { PreviousButton, NextButton } from './Buttons'
 import { Breadcrumbs } from './Breadcrumbs';
 import { useEffect } from "react";
 import { ContactFields, BillingFields } from './formFields';
+import { DynamicForm } from "./DynamicForm";
 
 
 export const MasterForm = () => {
     const [ userInfo, setUserInfo ] = useState({"quantity": 1, "total": "49.99"});
     const [ currentStep, setCurrentStep ] = useState("QUANTITY");
+    const [ formFields, setFormFields ] = useState([]);
     const [ axiosResponse, setAxiosResponse ] = useState("");
     const [ errors, setErrors ] = useState([]);
 
     useEffect (() => {
-        let currentFields = currentStep === 'CONTACT' 
-        ? ContactFields.filter(field => field.required) 
-        : currentStep === 'BILLING' 
-        ? BillingFields.filter(field => field.required) 
-        : [];
+        switch (currentStep) {
+            case 'CONTACT':
+                setFormFields(ContactFields);
+                break;
+            case 'BILLING':
+                setFormFields(BillingFields);
+                break;
+            default:
+                setFormFields([]);
+        }
+
         const errors = [];
-        currentFields.forEach( field => errors.push(field.name));
+        formFields.forEach( field => field.required ? errors.push(field.name) : null);
         setErrors(errors);
     }, [currentStep]);
  
@@ -49,11 +55,6 @@ export const MasterForm = () => {
             }).catch(error => console.log(error))
     };
 
-    // const addToErrorList = (fieldNameWithError) => {
-    //     let errorList = [...errors, ...fieldNameWithError];
-    //     setErrors(errorList);
-    // }
-
     const removeFromErrorList = (validFieldName) => {
         let errorList = errors.filter(fieldNameWithError => fieldNameWithError !== validFieldName);
         setErrors(errorList);
@@ -64,13 +65,26 @@ export const MasterForm = () => {
       <div style={MasterForm.styles.container}>
         <Breadcrumbs currentStep={currentStep} />
         <form style={MasterForm.styles.form}>
-            <Quantity addToOrder={addToOrder} currentStep={currentStep} />
-            <Contact removeFromErrorList={removeFromErrorList} addToOrder={addToOrder} currentStep={currentStep} />
-            <Billing removeFromErrorList={removeFromErrorList} addToOrder={addToOrder} currentStep={currentStep} />
-            <Confirmation currentStep={currentStep} axiosResponse={axiosResponse} userInfo={userInfo}/>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <PreviousButton currentStep={currentStep} setPreviousStep={setPreviousStep} />
-                <NextButton currentStep={currentStep} setNextStep={setNextStep} submitNewOrder={submitNewOrder} isDisabled={errors.length > 0}/>
+            <Quantity 
+                addToOrder={addToOrder}
+                currentStep={currentStep} />
+            <DynamicForm 
+                addToOrder={addToOrder} 
+                removeFromErrorList={removeFromErrorList}
+                formFields={formFields} />
+            <Confirmation
+                currentStep={currentStep}
+                axiosResponse={axiosResponse}
+                userInfo={userInfo}/>
+            <div style={MasterForm.styles.buttonContainer}>
+                <PreviousButton
+                    currentStep={currentStep}
+                    setPreviousStep={setPreviousStep} />
+                <NextButton 
+                    currentStep={currentStep}
+                    setNextStep={setNextStep}
+                    submitNewOrder={submitNewOrder}
+                    isDisabled={errors.length > 0}/>
             </div>
         </form>
       </div>
@@ -89,5 +103,9 @@ export const MasterForm = () => {
         padding: '2rem',
         border: '1px solid rgb(237, 237, 240)',
         overflowY: 'auto',
+      },
+      buttonContainer: {
+          display: 'flex',
+          justifyContent: 'space-between',
       }
   }
