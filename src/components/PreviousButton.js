@@ -8,6 +8,7 @@ const setPrev = (currentStep) => {
         case 'CONTACT':
         case 'CONFIRMATION':
         case 'ERROR':
+        case 'DUPLICATE_USER':
             return 'QUANTITY';
         default:
             return 'QUANTITY';

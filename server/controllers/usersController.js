@@ -14,12 +14,32 @@ exports.getUsers = async (req, res) => {
     })
 }
 
+exports.getByContactInfo = async (req, res) => {
+  knex('users')
+    .where({
+      'firstName': req.body.firstName,
+      'lastName': req.body.lastName,
+      'email': req.body.email,
+      'street1': req.body.street1,
+      'street2': req.body.street2,
+      'city': req.body.city,
+      'state': req.body.state,
+      'zip': req.body.zip,
+      'phone': req.body.phone
+    })
+    .then(data => {
+      res.json({data: data, message: 'User already exists'})
+    })
+    .catch(err => {
+      res.status(404);
+      res.json({ message: `Resource not found: ${err}` })
+    })
+}
 
 // Retrieve single user
 exports.getByUserId = async (req, res) => {
-  let id = req.params.id;
   knex('users')
-    .where('id', id)
+    .where('id', req.params.id)
     .then(userData => {
       res.json(userData)
     })
@@ -59,11 +79,11 @@ exports.createUser = async (req, res) => {
 }
 
 exports.updateFulfilled = async (req, res) => {
-    const id = req.body.id;
-    const fulfilled = req.body.fulfilled
+    // const id = req.body.id;
+    // const fulfilled = req.body.fulfilled
   knex('users')
-    .where('id', id)
-    .update({fulfilled: `${fulfilled}`}, ['id', 'fulfilled'])
+    .where('id', req.body.id)
+    .update({fulfilled: `${req.body.fulfilled}`}, ['id', 'fulfilled'])
     .then( () => {
       res.status(204);
       res.json({message: `Resource updated successfully`})
@@ -77,9 +97,9 @@ exports.updateFulfilled = async (req, res) => {
 
 // Remove specific user
 exports.deleteUser = async (req, res) => {
-  let id = req.params.id;
+  // const id = req.params.id;
   knex('users')
-    .where('id', id)
+    .where('id', req.params.id)
     .del()
     .then(() => {
       res.status(204);
