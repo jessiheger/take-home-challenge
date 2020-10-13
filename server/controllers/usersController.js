@@ -28,7 +28,11 @@ exports.getByContactInfo = async (req, res) => {
       'phone': req.body.phone
     })
     .then(data => {
-      res.json({data: data, message: 'User already exists'})
+      if (data.length > 0) {
+        res.json({data: data, message: 'User already exists'})
+      } else {
+        res.json({data: data, message: 'User is not in the database'})
+      }
     })
     .catch(err => {
       res.status(404);

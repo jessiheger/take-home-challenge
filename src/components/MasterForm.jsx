@@ -46,8 +46,7 @@ export const MasterForm = () => {
                 data: userInfo
             })
             .then( res => {
-                console.log(res.data)
-                if (res.data.length === 0) {
+                if (res.data.data.length === 0) {
                     setCurrentStep(nextStep)
                 } else {
                     setCurrentStep('DUPLICATE_USER');
