@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CustomInput } from './CustomInput';
-import { ContactFields } from './formFields';
 
+export const DynamicForm = props => {
+    const { formFields, addToOrder, removeFromErrorList } = props;
 
-export const Contact = props => {
-    const { addToOrder, currentStep, removeFromErrorList } = props;
-  
     return (
-        currentStep === 'CONTACT' ? 
         <div>
-            {ContactFields.map(field => {
+            {formFields.map(field => {
             return (
                 <CustomInput
                 label={field.label}
@@ -26,11 +23,10 @@ export const Contact = props => {
             )
             })}
         </div>
-        : <div></div>
-    );
+        );
   };
 
-  Contact.propTypes = {
+  DynamicForm.propTypes = {
     addToOrder: PropTypes.func,
     currentStep: PropTypes.string,
 };

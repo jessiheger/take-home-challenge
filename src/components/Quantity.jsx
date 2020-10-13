@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 export const Quantity = props => {
     const { currentStep, addToOrder } = props;
     const [quantity, setQuantity ] = useState(1);
-    const [price, setPrice ] = useState("49.99");
+    const [total, setTotal ] = useState("49.99");
 
     useEffect(() => {
-            setPrice((49.99 * quantity).toString());
+            setTotal((49.99 * quantity).toString());
     }, [quantity]);
 
 
     const onChange = (val) => {
         setQuantity(val);
         addToOrder("quantity", val);
-        addToOrder("total", price);
+        addToOrder("total", total);
     }
 
     return (
@@ -28,7 +28,7 @@ export const Quantity = props => {
                         <option value={3}>3</option>
                     </select>
                 </div>
-                <div style={Quantity.styles.rowContainer}>Price: ${price} </div>
+                <div style={Quantity.styles.rowContainer}>Total: ${total} </div>
             </div>
         : <div></div>
     )
