@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 export const Confirmation = props => {
     const { axiosResponse, userInfo, currentStep } = props;
-
+    console.log("axiosResponse", axiosResponse);
 
     return (
         currentStep === 'CONFIRMATION' ? 
         <div>
-            {/* TO DO: ADD ERROR MESSAGE OPTION */}
             <h2>Thank you! Order confirmed.</h2>
 
             <h3>An email confirmation has been sent to the email address provided.</h3>
@@ -28,12 +27,16 @@ export const Confirmation = props => {
             <div style={{margin: '1rem'}}>Credit Card: -{userInfo.ccNum.substr(userInfo.ccNum.length - 4)}</div>
 
         </div>
+        : currentStep === 'ERROR' ? 
+        <div>
+            <h2>There was an error processing your order. Please try again.</h2>            
+        </div>
         : <div></div>
     )
 }
 
 Confirmation.propTypes = {
-    axiosResponse: PropTypes.string.isRequired,
+    axiosResponse: PropTypes.object.isRequired,
     currentStep: PropTypes.string.isRequired,
     userInfo: PropTypes.object.isRequired,
 };

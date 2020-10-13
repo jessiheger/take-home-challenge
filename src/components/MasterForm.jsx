@@ -1,19 +1,19 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Quantity } from './Quantity';
-import { Confirmation } from './Confirmation';
-import { PreviousButton, NextButton } from './Buttons'
-import { Breadcrumbs } from './Breadcrumbs';
-import { useEffect } from "react";
-import { ContactFields, BillingFields } from './formFields';
-import { DynamicForm } from "./DynamicForm";
+import React, { useEffect, useState } from "react";
 
+import { BillingFields, ContactFields } from './formFields';
+import { Breadcrumbs } from './Breadcrumbs';
+import { Confirmation } from './Confirmation';
+import { DynamicForm } from "./DynamicForm";
+import { NextButton } from './NextButton'
+import { PreviousButton } from './PreviousButton'
+import { Quantity } from './Quantity';
 
 export const MasterForm = () => {
     const [ userInfo, setUserInfo ] = useState({"quantity": 1, "total": "49.99"});
     const [ currentStep, setCurrentStep ] = useState("QUANTITY");
     const [ formFields, setFormFields ] = useState([]);
-    const [ axiosResponse, setAxiosResponse ] = useState("");
+    const [ axiosResponse, setAxiosResponse ] = useState({})
     const [ errors, setErrors ] = useState([]);
 
     useEffect (() => {
@@ -56,8 +56,13 @@ export const MasterForm = () => {
                 data: userInfo
             })
             .then( res => {
-                setAxiosResponse(res.data.message);
-            }).catch(error => console.log(error))
+                setAxiosResponse(res);
+                // TO DO: PREVENT SETTING NEXT STEP UNTIL AFTER RECEIVING RESPONSE
+                setCurrentStep('CONFIRMATION');
+            }).catch(error => {
+                console.log(error);
+                setCurrentStep('ERROR');
+            });
     };
 
     const removeFromErrorList = (validFieldName) => {
