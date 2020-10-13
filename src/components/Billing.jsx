@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 
 export const Billing = props => {
-  const { addToOrder, currentStep } = props;
+  const { addToOrder, currentStep, removeFromErrorList } = props;
   
 return (
     currentStep === 'BILLING' ?
@@ -18,9 +18,11 @@ return (
               name={field.name}
               key={field.name}
               placeholder={field.placeholder}
+              message={field.message}
               required={field.required}
-              value={field.value}
+              validation={field.validation}
               addToOrder={addToOrder}
+              removeFromErrorList={removeFromErrorList}
             ></CustomInput>
           )
         })}

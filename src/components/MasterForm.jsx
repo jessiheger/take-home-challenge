@@ -6,12 +6,26 @@ import { Billing } from './Billing';
 import { Confirmation } from './Confirmation';
 import { PreviousButton, NextButton } from './Buttons'
 import { Breadcrumbs } from './Breadcrumbs';
+import { useEffect } from "react";
+import { ContactFields, BillingFields } from './formFields';
 
 
 export const MasterForm = () => {
     const [ userInfo, setUserInfo ] = useState({"quantity": 1, "total": "49.99"});
     const [ currentStep, setCurrentStep ] = useState("QUANTITY");
     const [ axiosResponse, setAxiosResponse ] = useState("");
+    const [ errors, setErrors ] = useState([]);
+
+    useEffect (() => {
+        let currentFields = currentStep === 'CONTACT' 
+        ? ContactFields.filter(field => field.required) 
+        : currentStep === 'BILLING' 
+        ? BillingFields.filter(field => field.required) 
+        : [];
+        const errors = [];
+        currentFields.forEach( field => errors.push(field.name));
+        setErrors(errors);
+    }, [currentStep]);
  
     const setPreviousStep = prevStep => setCurrentStep(prevStep);
     
@@ -35,18 +49,28 @@ export const MasterForm = () => {
             }).catch(error => console.log(error))
     };
 
+    // const addToErrorList = (fieldNameWithError) => {
+    //     let errorList = [...errors, ...fieldNameWithError];
+    //     setErrors(errorList);
+    // }
+
+    const removeFromErrorList = (validFieldName) => {
+        let errorList = errors.filter(fieldNameWithError => fieldNameWithError !== validFieldName);
+        setErrors(errorList);
+    }
+
   
     return (
       <div style={MasterForm.styles.container}>
         <Breadcrumbs currentStep={currentStep} />
         <form style={MasterForm.styles.form}>
             <Quantity addToOrder={addToOrder} currentStep={currentStep} />
-            <Contact addToOrder={addToOrder} currentStep={currentStep} />
-            <Billing addToOrder={addToOrder} currentStep={currentStep} />
+            <Contact removeFromErrorList={removeFromErrorList} addToOrder={addToOrder} currentStep={currentStep} />
+            <Billing removeFromErrorList={removeFromErrorList} addToOrder={addToOrder} currentStep={currentStep} />
             <Confirmation currentStep={currentStep} axiosResponse={axiosResponse} userInfo={userInfo}/>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <PreviousButton currentStep={currentStep} setPreviousStep={setPreviousStep} />
-                <NextButton currentStep={currentStep} setNextStep={setNextStep} submitNewOrder={submitNewOrder}/>
+                <NextButton currentStep={currentStep} setNextStep={setNextStep} submitNewOrder={submitNewOrder} isDisabled={errors.length > 0}/>
             </div>
         </form>
       </div>
