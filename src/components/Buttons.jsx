@@ -69,15 +69,15 @@ export const NextButton = props => {
 }
 
 PreviousButton.propTypes = {
-  currentStep: PropTypes.string,
-  setPreviousStep: PropTypes.func
+  currentStep: PropTypes.string.isRequired,
+  setPreviousStep: PropTypes.func.isRequired,
 };
 
 NextButton.propTypes = {
-  currentStep: PropTypes.string,
-  setNextStep: PropTypes.func,
-  submitNewOrder: PropTypes.func,
-  isDisabled: PropTypes.bool,
+  currentStep: PropTypes.string.isRequired,
+  setNextStep: PropTypes.func.isRequired,
+  submitNewOrder: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
 };
 
 PreviousButton.styles = {

@@ -35,8 +35,8 @@ export const Quantity = props => {
 }
 
 Quantity.propTypes = {
-    addToOrder: PropTypes.func,
-    currentStep: PropTypes.string,
+    addToOrder: PropTypes.func.isRequired,
+    currentStep: PropTypes.string.isRequired,
 };
 
 Quantity.styles = {
