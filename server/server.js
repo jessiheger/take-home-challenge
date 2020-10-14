@@ -22,8 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res, next) => {
-    // res.json({"message": "OK"})
-    res.render('index.js');
+    res.json({"message": "OK"})
 });
 
 // Implement users route
