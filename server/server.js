@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 app.use(express.static(publicPath));
 
 app.get('/', (req, res, next) => {
-    res.json({"message": "OK"})
+    res.render('index')
 });
 
 app.get('*', (req, res) => {
