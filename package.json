@@ -33,7 +33,6 @@
     "webpack": "4.42.0"
   },
   "scripts": {
-    "build": "node ./buildScript",
     "build-front": "react-scripts build",
     "eject": "react-scripts eject",
     "start-server": "nodemon server/server.js --watch server/*",
