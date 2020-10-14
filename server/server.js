@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4001
 // Create express app
 const app = express()
 
-const publicPath = path.join(__dirname, '..', 'public');
+const publicPath = path.join(__dirname, '..', 'src');
 
 
 // Apply middleware
