@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const cors = require('cors')
 const helmet = require('helmet')
+const path = require('path');
 
 // Import routes
 const userRouter = require('./routes/usersRoute')
@@ -14,6 +15,9 @@ const PORT = process.env.PORT || 4001
 // Create express app
 const app = express()
 
+const publicPath = path.join(__dirname, '..', 'public');
+
+
 // Apply middleware
 app.use(cors())
 app.use(helmet())
@@ -21,8 +25,14 @@ app.use(compression())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static(publicPath));
+
 app.get('/', (req, res, next) => {
     res.json({"message": "OK"})
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 // Implement users route
