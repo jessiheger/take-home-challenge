@@ -23,6 +23,7 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res, next) => {
     res.json({"message": "OK"})
+    res.render('index.js');
 });
 
 // Implement users route
